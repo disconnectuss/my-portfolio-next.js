@@ -1,1 +1,7 @@
 node_modules
+
+# Ignore Yarn files
+.yarn/
+.yarnrc
+.yarnrc.yml
+yarn.lock
