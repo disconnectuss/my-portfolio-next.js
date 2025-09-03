@@ -15,25 +15,23 @@ const HeroSection = () => {
           transition={{ duration: 0.5 }}
           className="col-span-8 place-self-center text-center sm:text-left justify-self-start"
         >
-          <h1 className="text-white mb-4 text-4xl sm:text-5xl lg:text-8xl lg:leading-normal font-extrabold">
+          <h1 className="text-white mb-4 text-4xl sm:text-5xl lg:text-8xl lg:leading-normal font-semibold">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-600">
-              Hello, I&apos;m{" "}
+              Hello, I&apos;m Fatma{" "}
             </span>
             <br></br>
-            <span className="inline-block min-w-[300px] sm:min-w-[400px] lg:min-w-[600px] font-semibold">
+            <span className="inline-block min-w-[300px] sm:min-w-[400px] lg:min-w-[600px] font-medium">
               <TypeAnimation
                 sequence={[
-                  "fatma",
+                  "Fullstack Developer",
                   1000,
-                  "full stack developer",
+                  "React Native Expert",
                   1000,
-                  "react native expert",
+                  "React Enthusiast",
                   1000,
-                  "react enthusiast",
+                  "Backend Solutions",
                   1000,
-                  "backend solutions",
-                  1000,
-                  "mobile developer",
+                  "Mobile Developer",
                   1000,
                 ]}
                 wrapper="span"
