@@ -3,6 +3,7 @@ import React, { useState, useRef } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectTag from "./ProjectTag";
 import { motion, useInView } from "framer-motion";
+import { useLanguage } from "../../context/LanguageContext";
 
 const projectsData = [
   {
@@ -62,6 +63,8 @@ const projectsData = [
 ];
 
 const ProjectsSection = () => {
+  const { messages } = useLanguage();
+  const projects = messages.projects;
   const [tag, setTag] = useState("All");
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -82,22 +85,22 @@ const ProjectsSection = () => {
   return (
     <section id="projects">
       <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
-        My Projects
+        {projects.title}
       </h2>
       <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
         <ProjectTag
           onClick={handleTagChange}
-          name="All"
+          name={projects.tags.all}
           isSelected={tag === "All"}
         />
         <ProjectTag
           onClick={handleTagChange}
-          name="Web"
+          name={projects.tags.web}
           isSelected={tag === "Web"}
         />
         <ProjectTag
           onClick={handleTagChange}
-          name="Mobile"
+          name={projects.tags.mobile}
           isSelected={tag === "Mobile"}
         />
       </div>

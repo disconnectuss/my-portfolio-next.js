@@ -4,8 +4,11 @@ import GithubIcon from "../../../public/github-icon.svg";
 import LinkedinIcon from "../../../public/linkedin-icon.svg";
 import Link from "next/link";
 import Image from "next/image";
+import { useLanguage } from "../../context/LanguageContext";
 
 const EmailSection = () => {
+  const { messages } = useLanguage();
+  const contact = messages.contact;
   const [emailSubmitted, setEmailSubmitted] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -47,12 +50,10 @@ const EmailSection = () => {
       <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-900 to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-3/4 -left-4 transform -translate-x-1/2 -translate-1/2"></div>
       <div className="z-10">
         <h5 className="text-xl font-bold text-white my-2">
-          Let&apos;s Connect
+          {contact.title}
         </h5>
         <p className="text-[#ADB7BE] mb-4 max-w-md">
-          Got a cool project in mind? Need a bug squashed? Just want to chat about tech? 
-          I'd love to hear from you! Whether it's a quick question or your next big idea, 
-          my inbox is always open. Let's build something awesome together! ✨
+          {contact.description}
         </p>
         <div className="socials flex flex-row gap-2">
           <Link href="https://github.com/disconnectuss" target="_blank" rel="noopener noreferrer">
@@ -66,7 +67,7 @@ const EmailSection = () => {
       <div>
         {emailSubmitted ? (
           <p className="text-green-500 text-sm mt-2">
-            Email sent successfully!
+            {contact.form.successMessage}
           </p>
         ) : (
           <form className="flex flex-col" onSubmit={handleSubmit}>
@@ -75,7 +76,7 @@ const EmailSection = () => {
                 htmlFor="email"
                 className="text-white block mb-2 text-sm font-medium"
               >
-                Your email
+                {contact.form.email}
               </label>
               <input
                 name="email"
@@ -83,7 +84,7 @@ const EmailSection = () => {
                 id="email"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                placeholder="jacob@google.com"
+                placeholder={contact.form.emailPlaceholder}
               />
             </div>
             <div className="mb-6">
@@ -91,7 +92,7 @@ const EmailSection = () => {
                 htmlFor="subject"
                 className="text-white block text-sm mb-2 font-medium"
               >
-                Subject
+                {contact.form.subject}
               </label>
               <input
                 name="subject"
@@ -99,7 +100,7 @@ const EmailSection = () => {
                 id="subject"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                placeholder="Just saying hi"
+                placeholder={contact.form.subjectPlaceholder}
               />
             </div>
             <div className="mb-6">
@@ -107,20 +108,20 @@ const EmailSection = () => {
                 htmlFor="message"
                 className="text-white block text-sm mb-2 font-medium"
               >
-                Message
+                {contact.form.message}
               </label>
               <textarea
                 name="message"
                 id="message"
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                placeholder="Let's talk about..."
+                placeholder={contact.form.messagePlaceholder}
               />
             </div>
             <button
               type="submit"
               className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2.5 px-5 rounded-lg w-full"
             >
-              Send Message
+              {contact.form.sendMessage}
             </button>
           </form>
         )}

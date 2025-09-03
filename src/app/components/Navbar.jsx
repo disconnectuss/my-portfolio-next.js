@@ -1,27 +1,31 @@
 "use client";
+import { useLanguage } from "@/context/LanguageContext";
 import Link from "next/link";
 import React, { useState } from "react";
 import NavLink from "./NavLink";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import MenuOverlay from "./MenuOverlay";
-
-const navLinks = [
-  {
-    title: "About",
-    path: "#about",
-  },
-  {
-    title: "Projects",
-    path: "#projects",
-  },
-  {
-    title: "Contact",
-    path: "#contact",
-  },
-];
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Navbar = () => {
+  const { messages, language, switchLanguage } = useLanguage();
+  const nav = messages.nav;
   const [navbarOpen, setNavbarOpen] = useState(false);
+
+  const navLinks = [
+    {
+      title: nav.about,
+      path: "#about",
+    },
+    {
+      title: nav.projects,
+      path: "#projects",
+    },
+    {
+      title: nav.contact,
+      path: "#contact",
+    },
+  ];
 
   return (
     <nav className="fixed mx-auto border border-[#33353F] top-0 left-0 right-0 z-10 bg-[#121212] bg-opacity-100">
@@ -56,10 +60,13 @@ const Navbar = () => {
                 <NavLink href={link.path} title={link.title} />
               </li>
             ))}
+            <li>
+              <LanguageSwitcher />
+            </li>
           </ul>
         </div>
       </div>
-      {navbarOpen ? <MenuOverlay links={navLinks} /> : null}
+      {navbarOpen ? <MenuOverlay links={navLinks} languageSwitcher={<LanguageSwitcher />} /> : null}
     </nav>
   );
 };

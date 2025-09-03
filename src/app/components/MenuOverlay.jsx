@@ -1,7 +1,7 @@
 import React from "react";
 import NavLink from "./NavLink";
 
-const MenuOverlay = ({ links }) => {
+const MenuOverlay = ({ links, languageSwitcher }) => {
   return (
     <ul className="flex flex-col py-4 items-center">
       {links.map((link, index) => (
@@ -9,6 +9,11 @@ const MenuOverlay = ({ links }) => {
           <NavLink href={link.path} title={link.title} />
         </li>
       ))}
+      {languageSwitcher && (
+        <li className="mt-4">
+          {languageSwitcher}
+        </li>
+      )}
     </ul>
   );
 };

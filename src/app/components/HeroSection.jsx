@@ -4,8 +4,12 @@ import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useLanguage } from "../../context/LanguageContext";
 
 const HeroSection = () => {
+  const { t, messages, locale } = useLanguage();
+  const hero = messages.hero;
+
   return (
     <section className="lg:py-16">
       <div className="grid grid-cols-1 sm:grid-cols-12">
@@ -17,21 +21,21 @@ const HeroSection = () => {
         >
           <h1 className="text-white mb-4 text-4xl sm:text-5xl lg:text-8xl lg:leading-normal font-semibold">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-600">
-              Hello, I&apos;m Fatma{" "}
+              {hero.greeting}{" "}
             </span>
             <br></br>
             <span className="inline-block min-w-[300px] sm:min-w-[400px] lg:min-w-[600px] font-medium">
               <TypeAnimation
                 sequence={[
-                  "Fullstack Developer",
+                  hero.roles[0],
                   1000,
-                  "React Native Expert",
+                  hero.roles[1],
                   1000,
-                  "React Enthusiast",
+                  hero.roles[2],
                   1000,
-                  "Backend Solutions",
+                  hero.roles[3],
                   1000,
-                  "Mobile Developer",
+                  hero.roles[4],
                   1000,
                 ]}
                 wrapper="span"
@@ -41,16 +45,14 @@ const HeroSection = () => {
             </span>
           </h1>
           <p className="text-[#ADB7BE] text-base sm:text-lg mb-6 lg:text-xl">
-            I transform complex problems into elegant digital solutions! 
-            Specializing in React & React Native development, I create apps that users love 
-            and businesses need. Ready to bring your next project to life? 🚀
+            {hero.description}
           </p>
           <div>
             <Link
               href="/#contact"
               className="px-6 inline-block py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-primary-500 to-secondary-500 hover:bg-slate-200 text-white"
             >
-              Hire Me
+              {hero.hireMe}
             </Link>
             <Link
               href="/cv/Fatma-Aktas-CV.pdf"
@@ -58,7 +60,7 @@ const HeroSection = () => {
               className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 hover:bg-slate-800 text-white mt-3"
             >
               <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
-                Download CV
+                {hero.downloadCV}
               </span>
             </Link>
             <Link
@@ -68,7 +70,7 @@ const HeroSection = () => {
               className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 hover:bg-slate-800 text-white mt-3 ml-0 sm:ml-4"
             >
               <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
-                View GitHub
+                {hero.viewGithub}
               </span>
             </Link>
           </div>
